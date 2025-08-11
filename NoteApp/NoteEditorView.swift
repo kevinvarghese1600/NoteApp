@@ -4,8 +4,6 @@ import SwiftData
 struct NoteEditorView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss)     private var dismiss
-    @FocusState private var focusedField: Bool
-
     @State private var noteContent: String
     private let noteToEdit: Note?
 
@@ -30,11 +28,8 @@ struct NoteEditorView: View {
                 .padding(.top, 16)
 
                 // Editor
-                TextEditor(text: $noteContent)
-                    .focused($focusedField)
-                    .onAppear { focusedField = true }
-                    .font(.body)
-                    .padding(.horizontal,0)
+                MarkdownTextView(text: $noteContent)
+                    .padding(.horizontal, 0)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
 
             }
